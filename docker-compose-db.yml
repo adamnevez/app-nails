@@ -5,10 +5,10 @@ services:
     image: mysql:5.5
     restart: always
     environment:
-      MYSQL_DATABASE: 'webstore'
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'webstoredoce'
-      MYSQL_ROOT_PASSWORD: 'webstoredoce'
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       TZ: 'America/Manaus'
     ports:
       - '3309:3306'
