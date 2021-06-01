@@ -1,0 +1,25 @@
+.mb-5 {
+	color: #ff6666;
+	font-weight: bold; 
+}
+
+.img-logo {
+    width:15%;
+    height:5%;
+}
+
+.text-label {
+	margin-left: 15px;
+	color: #ff3399;
+	font-weight: bold;
+}
+
+.navbar-custom {
+    background-color: #ffccff !important;
+}
+
+body {
+  background-image: url("../../images/logo/nailsbackground.png");
+  background-size: 18% 33%;
+  background-position: center center;
+}

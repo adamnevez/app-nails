@@ -1,0 +1,5 @@
+# conf database
+.env
+# ignore images products
+/images/products/*
+
