@@ -6,9 +6,9 @@ if(!defined('ACCESS')){
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">      
-        <a class="navbar-brand" href="index.php">
-            <img class="" src="./images/icon/favicon.ico" width="120" height="120"> 
-            <span class="text-label">Jess Design Nails</span>
+        <a class="navbar-brand" href="./">
+            <img class="" src="./images/logo/logonaills.jpeg" width="120" height="120">&nbsp;
+            <span class="text-label">Nails App</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

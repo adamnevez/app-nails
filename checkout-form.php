@@ -23,18 +23,24 @@ if ($result_products->rowCount() == 0) {
 $row_product = $result_products->fetch(PDO::FETCH_ASSOC);
 extract($row_product);
 
-$query_schedule ="SELECT id_weekly,
-DATE_FORMAT(date_weekly,'%d/%m/%Y') AS date_weekly, 
-DATE_FORMAT(time_weekly,'%H:%m') AS time_weekly 
-FROM hour_schedule 
+$query_schedule ="SELECT hs.id_weekly,
+DATE_FORMAT(hs.date_weekly,'%d/%m/%Y') AS date_weekly, 
+DATE_FORMAT(hs.time_weekly,'%H:%m') AS time_weekly,
+hs.vagancy
+FROM hour_schedule AS hs 
+WHERE vagancy = 'N' 
 ORDER BY date_weekly DESC";
 $result_schedule = $conn->prepare($query_schedule);
-$result_schedule->execute(); 
+$result_schedule->execute();
 
-if ($result_schedule->rowCount() == 0) {
-    $msgAgendamento ="<div class='alert alert-danger' role='alert'>Estamos sem VAGA no momento!</div>";
+$result_schedule_msg = $conn->prepare($query_schedule);
+$result_schedule_msg->execute();
+$row_msg_vagancy = $result_schedule_msg->fetch(PDO::FETCH_ASSOC);
+extract($row_msg_vagancy);
+
+if ($row_msg_vagancy['vagancy'] == null) {
+    $msgAgendamento ="<div class='alert alert-danger' role='alert'>Estamos sem VAGAS no momento!</div>";
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -44,6 +50,8 @@ if ($result_schedule->rowCount() == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="images/icon/favicon.ico" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="admin/css/layout.css" integrity="" crossorigin="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
     <title>Nails App - Formulario de Agendamento</title>
 </head>
 <body>        
@@ -86,11 +94,40 @@ if ($result_schedule->rowCount() == 0) {
             $add_schedule->bindParam(":product_id", $id);
             $add_schedule->bindParam(":created", $data['created']);
             $add_schedule->execute();
-            
-            if ($add_schedule->rowCount() == 0) {
-                $msg = "<div class='alert alert-danger' role='alert'>Erro: Tente novamente!</div>";                                    
-            } else {
-                $msg = "<div class='alert alert-success' role='alert'>Agendamento Cadastrado com sucesso</div>";
+
+            if (isset($data['agendamento'])) {
+
+                $query_up_hour_schedule ="UPDATE hour_schedule SET vagancy='S' WHERE id_weekly = ".$data['agendamento']." LIMIT 1";
+                $update_hour_schedule = $conn->prepare($query_up_hour_schedule);
+                $update_hour_schedule->execute();
+
+                $query_verify_max ="SELECT MAX(id_client_sch) AS id_client_sch FROM schedule_client";
+                $result_verify_max = $conn->prepare($query_verify_max);
+                $result_verify_max->bindParam(':id_client_sch', $id_client_sch, PDO::PARAM_INT);
+                $result_verify_max->execute();
+                $row_max = $result_verify_max->fetch(PDO::FETCH_ASSOC);
+                extract($row_max);
+
+                if(isset($id_client_sch)) {
+
+                    $data['created'] = date('Y-m-d H:i:s');
+
+                    $query_checkout_schedule="INSERT INTO checkout_schedule (created,id_weekly,id_client_sch) VALUES(:created,:id_weekly,:id_client_sch)";
+                    $add_checkout_schedule = $conn->prepare($query_checkout_schedule);
+
+                    $add_checkout_schedule->bindParam(":created", $data['created'],PDO::PARAM_STR);
+                    $add_checkout_schedule->bindParam(":id_weekly", $data['agendamento']);
+                    $add_checkout_schedule->bindParam(":id_client_sch", $id_client_sch);
+                    $add_checkout_schedule->execute();
+
+                    if (!isset($add_checkout_schedule)) {
+                        $msg = "<div class='alert alert-danger' role='alert'>Erro: Tente novamente!</div>";                                    
+                    } else {
+                        $msg = "<div class='alert alert-success' role='alert'>Agendamento Cadastrado com sucesso</div>";
+                    }
+                } else {
+                    die("Error: Procure o Administrador!");
+                }
             }
         }
     }
@@ -98,7 +135,7 @@ if ($result_schedule->rowCount() == 0) {
     ?>
     <div class="container">
         <div class="py-5 text-center">
-            <h2>Formulário de Agendamento</h2>
+            <h2 class="color-h3">Formulário de Agendamento</h2>
             <p class="lead"></p>
         </div>
 
@@ -151,34 +188,35 @@ if ($result_schedule->rowCount() == 0) {
 
                         <div class="form-group col-md-6">
                             <label for="phone">Telefone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Telefone com o DDD" maxlength="14" oninput="maskPhone(this)" value="<?php if (isset($data['phone'])) { echo $data['phone']; } ?>">
+                            <input type="text" name="phone" id="phone" class="form-control" placeholder="(99)9999-9999" maxlength="14" oninput="maskPhone(this)" value="<?php if (isset($data['phone'])) { echo $data['phone']; } ?>" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">E-mail</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Digite o seu melhor e-mail" value="<?php if (isset($data['email'])) { echo $data['email']; } ?>">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Digite o seu melhor e-mail" value="<?php if (isset($data['email'])) { echo $data['email']; } ?>" required>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="email">Agendamento</label>
                             <select class="form-control" name="agendamento" id="agendamento" value=
-                            "<?php if (isset($data['agendamento'])) { echo $data['agendamento']; } ?>">
-                                <option value="">Selecione Data</option>
+                            "<?php if (isset($data['agendamento'])) { echo $data['agendamento']; } ?>" required>
+                            <option value="">Selecione Data</option>
                             <?php
                             while ($row_schedule = $result_schedule->fetch(PDO::FETCH_ASSOC)) {
                                 extract($row_schedule);
-                            ?>             
+
+                                ?>             
                                 <option value="<?=$id_weekly?>"><?=$date_weekly.' - '.$time_weekly?></option>
                             <?php } ?>
                         </select>
                     </div>
-
-
                 </div>
+
                 <a href="./" type="button" name="" class="btn btn-info" value="Enviar">Voltar</a>
                 <button type="submit" name="BtnPicPay" class="btn btn-primary" value="Enviar">Enviar</button>
+
             </form>
         </div>
     </div>

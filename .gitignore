@@ -2,4 +2,6 @@
 .env
 # ignore images products
 /images/products/*
+# ignore images marketing
+/images/instagram/*
 

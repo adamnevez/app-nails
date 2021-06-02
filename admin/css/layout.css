@@ -1,25 +1,118 @@
 .mb-5 {
-	color: #ff6666;
+	color: #F49696;
 	font-weight: bold; 
 }
 
 .img-logo {
-    width:15%;
-    height:5%;
+	width:15%;
+	height:5%;
 }
 
 .text-label {
 	margin-left: 15px;
-	color: #ff3399;
+	color: #563B49;
 	font-weight: bold;
 }
 
 .navbar-custom {
-    background-color: #ffccff !important;
+	background-color: #F2AED2 !important;
 }
 
-body {
-  background-image: url("../../images/logo/nailsbackground.png");
-  background-size: 18% 33%;
-  background-position: center center;
+
+/* footer layout responsive */
+.red {
+  color: #563B49 !important;
 }
+
+.color-h3 {
+	color: #563B49 !important;	
+}
+
+footer {
+  background-color: #F2AED2;
+  padding: 40px 0;
+  margin-top: 90px;
+}
+
+footer .footer-widget h3 {
+  margin-bottom: 30px;
+}
+
+footer .contact-link {
+  display: inline-block;
+  width: 100%;
+  color: #563B49;
+}
+
+footer .footer-social ul {
+  padding-left: 0;
+}
+
+footer .footer-social ul li {
+  list-style: none;
+  float: left;
+  padding: 0 10px;
+}
+
+footer .footer-social ul li:first-child {
+  padding-left: 0;
+}
+
+footer .footer-social ul li a {
+  font-size: 20px;
+  color: #563B49;
+}
+
+footer .footer-social ul li a:hover {
+  color: red;
+}
+
+footer .opening-time {
+  padding-left: 0;
+}
+
+footer .opening-time li {
+  list-style: none;
+}
+
+footer .opening-time li span {
+  float: left;
+  padding-right: 10px;
+}
+
+footer .opening-time li span .fa-times {
+  color: red;
+}
+
+footer .opening-time li strong {
+  color: red;
+}
+
+footer .media-body a {
+  color: #563B49;
+}
+
+footer .media-body a:hover {
+  color: red;
+}
+
+footer .media-body span {
+  color: #563B49;
+}
+
+footer .images-gellary ul {
+  padding-left: 0;
+}
+
+footer .images-gellary ul li {
+  list-style: none;
+  float: left;
+  margin: 0 3% 2% 0;
+  width: 31%;
+  position: relative;
+}
+
+footer .images-gellary ul li:nth-child(3n) {
+  margin: 0 0 1%;
+}
+/* footer layout responsive */

@@ -11,16 +11,19 @@ include_once '../../validate.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="../images/icon/favicon.ico" >
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity=
-    "sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="images/icon/favicon.ico" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/layout.css" integrity="" crossorigin="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Nails App - Agendamento Semanal</title>
 </head>
 <body>
+    
     <?php
     include_once 'menu.php';
+    
     ?>
+    
     <div class="container">
         <h2 class="display-4 mt-3 mb-3">Agendamento Semanal</h2>
         <!-- Button trigger modal -->
@@ -74,14 +77,17 @@ include_once '../../validate.php';
                     <th scope="col">Semana</th>
                     <th scope="col">Data</th>
                     <th scope="col">Hora</th>
+                    <th scope="col">Vagas</th>
                     <th scope="col" class="text-center">Ações</th>
                 </tr>
             </thead>
+
             <?php
             $query_product ="SELECT hs.id_hour, 
             DATE_FORMAT(hs.date_weekly,'%d/%m/%Y') AS date_weekly, 
-            DATE_FORMAT(hs.time_weekly,'%H:%m') AS time_weekly, 
-            ws.weekly FROM hour_schedule AS hs
+            DATE_FORMAT(hs.time_weekly,'%H:%m') AS time_weekly,
+            ws.weekly,hs.vagancy 
+            FROM hour_schedule AS hs
             JOIN weekly_schedule AS ws ON ws.id_weekly = hs.id_weekly 
             ORDER BY hs.id_hour DESC";
             $result_product = $conn->prepare($query_product);
@@ -89,17 +95,21 @@ include_once '../../validate.php';
             while ($row_product = $result_product->fetch(PDO::FETCH_ASSOC)) {
                 extract($row_product);
             ?>
+            
             <tr>
                 <th><?=$id_hour?></th>
                 <td><?=$weekly?></td>
                 <td><?=$date_weekly?></td>
                 <td><?=$time_weekly?></td>
+                <td><?=$vagancy == 'S' ? "<span class='alert-danger'>NAO</span>" : "<span class='alert-success'>SIM</span>"?></td>
                 <td class='text-center'>
                     <a href='controllers/edit-products.php?id=<?=$id?>' class='btn btn-outline-warning btn-sm'>Editar</a>
                     <a href='controllers/delete-products.php?id=<?=$id?>' class='btn btn-outline-danger btn-sm'>Deletar</a>
                 </td>
             </tr>
+            
             <?php } ?>
+        
         </table>
     </div>
 
