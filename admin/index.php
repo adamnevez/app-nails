@@ -1,7 +1,9 @@
 <?php
 session_start();
 define('ACCESS', true);
+
 include_once '../connection.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,15 +39,16 @@ include_once '../connection.php';
                 $result_user->execute();
                 
                 if($result_user->rowCount() != 0){
-                    //$msg = "<div class='alert alert-success' role='alert'>E-mail encontrado!</div>";
+                    $msg = "<div class='alert alert-success' role='alert'>E-mail encontrado!</div>";
                     $row_user = $result_user->fetch(PDO::FETCH_ASSOC);
 
                     if(password_verify($data['password'], $row_user['password'])) {
-                        //$msg = "<div class='alert alert-success' role='alert'>Usuário e senha valida!</div>";
+                        $msg = "<div class='alert alert-success' role='alert'>Usuário e senha valida!</div>";
                         $_SESSION['user_id'] = $row_user['id'];
                         $_SESSION['user_name'] = $row_user['name'];
                         $_SESSION['user_email'] = $row_user['email'];
-                        $_SESSION['user_key'] = password_hash($row_user['id'], PASSWORD_DEFAULT);
+                        $_SESSION['user_key'] = password_hash($row_user['password'], PASSWORD_DEFAULT);
+                        
                         header("Location: view-schedule.php");
 
                     }else{
@@ -93,5 +96,6 @@ include_once '../connection.php';
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
     </body>
 </html>

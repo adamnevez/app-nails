@@ -5,7 +5,7 @@ define('ACCESS', true);
 include_once '../connection.php';
 include_once './validate.php';
 
-$query_payments ="SELECT sc.id_schedule,sc.first_name,sc.phone,
+$query_payments ="SELECT sc.id_client_sch,sc.first_name,sc.phone,
 DATE_FORMAT(hs.date_weekly,'%d/%m/%Y') AS date_weekly, 
 TIME_FORMAT(hs.time_weekly,'%H:%i') AS time_weekly,
 ps.name,ps.price 
@@ -13,8 +13,8 @@ FROM schedule_client AS sc
 LEFT JOIN products AS ps ON ps.id = sc.product_id
 JOIN schedule_status AS ss ON ss.id_status = sc.schedule_status_id
 JOIN hour_schedule AS hs ON hs.id_weekly = sc.id_weekly
-GROUP BY sc.id_schedule 
-ORDER BY sc.id_schedule DESC";
+GROUP BY sc.id_client_sch 
+ORDER BY sc.id_client_sch DESC";
 $result_payments = $conn->prepare($query_payments);
 $result_payments->execute();
 
@@ -25,7 +25,7 @@ $result_payments->execute();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="images/icon/favicon.ico" >
+    <link rel="shortcut icon" href="../images/icon/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/layout.css" integrity="" crossorigin="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -66,7 +66,7 @@ $result_payments->execute();
                     extract($row_payment);    
             ?>
                 <tr>
-                    <th><?=$id_schedule?></th>
+                    <th><?=$id_client_sch?></th>
                     <td><?=strtoupper($first_name)?></td>
                     <td><?=$phone?></td>
                     <td><?=$date_weekly.' às '.$time_weekly?></td>

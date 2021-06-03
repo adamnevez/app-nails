@@ -15,6 +15,7 @@ include_once '../../validate.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/layout.css" integrity="" crossorigin="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
     <title>Nails App - Agendamento Semanal</title>
 </head>
 <body>
@@ -101,7 +102,7 @@ include_once '../../validate.php';
                 <td><?=$weekly?></td>
                 <td><?=$date_weekly?></td>
                 <td><?=$time_weekly?></td>
-                <td><?=$vagancy == 'S' ? "<span class='alert-danger'>NAO</span>" : "<span class='alert-success'>SIM</span>"?></td>
+                <td><?=$vagancy == 'S' ? "<span class='alert-success'>Sim</span>" : "<span class='alert-danger'>Não</span>"?></td>
                 <td class='text-center'>
                     <a href='controllers/edit-products.php?id=<?=$id?>' class='btn btn-outline-warning btn-sm'>Editar</a>
                     <a href='controllers/delete-products.php?id=<?=$id?>' class='btn btn-outline-danger btn-sm'>Deletar</a>

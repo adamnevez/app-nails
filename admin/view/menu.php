@@ -31,6 +31,6 @@ if(!defined('ACCESS')){
             </ul>
         </div>
 
-        <a href="../logout.php" class="btn btn-danger my-2 my-sm-0">Sair</a>
+        <a href="../logout.php" class="btn btn-danger my-2 my-sm-0">Logout</a>
     </div>
 </nav>

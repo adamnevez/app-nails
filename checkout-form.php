@@ -28,7 +28,7 @@ DATE_FORMAT(hs.date_weekly,'%d/%m/%Y') AS date_weekly,
 DATE_FORMAT(hs.time_weekly,'%H:%m') AS time_weekly,
 hs.vagancy
 FROM hour_schedule AS hs 
-WHERE vagancy = 'N' 
+WHERE vagancy = 'S' 
 ORDER BY date_weekly DESC";
 $result_schedule = $conn->prepare($query_schedule);
 $result_schedule->execute();
@@ -97,7 +97,7 @@ if ($row_msg_vagancy['vagancy'] == null) {
 
             if (isset($data['agendamento'])) {
 
-                $query_up_hour_schedule ="UPDATE hour_schedule SET vagancy='S' WHERE id_weekly = ".$data['agendamento']." LIMIT 1";
+                $query_up_hour_schedule ="UPDATE hour_schedule SET vagancy='N' WHERE id_weekly = ".$data['agendamento']." LIMIT 1";
                 $update_hour_schedule = $conn->prepare($query_up_hour_schedule);
                 $update_hour_schedule->execute();
 

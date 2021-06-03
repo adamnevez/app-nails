@@ -11,12 +11,11 @@ $pass = "webstoredoce";
 $dbname = "webstore";
 $port = 3309;
 
-
 try {
     //Conexao com o BD utilizando a porta
     //$conn = new PDO("mysql:host=$host;port=$port;dbname=" . $dbname, $user, $pass);
     //Conexao com o BD nao utilizando a porta
-    $conn = new PDO("mysql:host=$host;dbname=" . $dbname, $user, $pass);
+    $conn = new PDO("mysql:host=$host;dbname=".$dbname, $user, $pass);
     //echo "Conexão com banco de dados realizado com sucesso!<br>";
 } catch (Exception $ex) {
     //echo "Erro: Conexão com banco de dados não realizada com sucesso.<br>";
