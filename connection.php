@@ -5,7 +5,8 @@ if(!defined('ACCESS')) {
     die("Erro: Pagina nao encontrada!<br>");
 }
 
-$host = "172.20.0.2"; 
+// $host = "172.20.0.2"; 
+$host = "db"; 
 $user = "root";
 $pass = "webstoredoce"; 
 $dbname = "webstore";
