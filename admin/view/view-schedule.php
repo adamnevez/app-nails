@@ -86,7 +86,7 @@ include_once '../../validate.php';
             <?php
             $query_product ="SELECT hs.id_hour, 
             DATE_FORMAT(hs.date_weekly,'%d/%m/%Y') AS date_weekly, 
-            DATE_FORMAT(hs.time_weekly,'%H:%m') AS time_weekly,
+            DATE_FORMAT(hs.time_weekly,'%H:%i') AS time_weekly,
             ws.weekly,hs.vagancy 
             FROM hour_schedule AS hs
             JOIN weekly_schedule AS ws ON ws.id_weekly = hs.id_weekly 
