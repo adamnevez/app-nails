@@ -95,7 +95,7 @@ if ($row_msg_vagancy['vagancy'] == null) {
 
             if (isset($data['agendamento'])) {
 
-                $query_up_hour_schedule ="UPDATE hour_schedule SET vagancy='N' WHERE id_weekly = ".$data['agendamento']." LIMIT 1";
+                $query_up_hour_schedule ="UPDATE hour_schedule SET vagancy ='N' WHERE id_weekly =".$data['agendamento']." LIMIT 1";
                 $update_hour_schedule = $conn->prepare($query_up_hour_schedule);
                 $update_hour_schedule->execute();
 
@@ -119,8 +119,10 @@ if ($row_msg_vagancy['vagancy'] == null) {
                     if (!isset($add_checkout_schedule)) {
                         $msg = "<div class='alert alert-danger' role='alert'>Erro: Tente novamente!</div>";                                    
                     } else {
-                        $msg = "<div class='alert alert-success' role='alert'>Agendamento Cadastrado com sucesso</div>";
-                        header("Refresh: 1; url = index.php"); 
+                        $msg = "<div class='alert alert-success' role='alert'> Agendamento Cadastrado com sucesso </div>";
+                        // $msgEmail = "<div class='alert alert-warning' role='alert'> Em instantes você receberá um e-mail com a confirmação de seu agendamento! </div>";
+                        $disable = "disabled='disabled'";
+                        header("Refresh: 2; url = index.php"); 
                     }
                 } else {
                     die("Error: Procure o Administrador!");
@@ -130,6 +132,7 @@ if ($row_msg_vagancy['vagancy'] == null) {
     }
     
     ?>
+    
     <div class="container">
         <div class="py-5 text-center">
             <h2 class="color-h3">Formulário de Agendamento</h2>
@@ -210,8 +213,8 @@ if ($row_msg_vagancy['vagancy'] == null) {
                     </div>
                 </div>
 
-                <a href="./" type="button" name="" class="btn btn-info btn-group-sm" value="Enviar">Voltar</a>
-                <button type="submit" name="BtnPicPay" class="btn btn-primary btn-group-sm" value="Enviar">Enviar</button>
+                <a href="./" type="button" name="" class="btn btn-info btn-group-sm" value="Enviar"> Voltar </a>
+                <button type="submit" name="BtnPicPay" class="btn btn-primary btn-group-sm" value="Enviar" <?=$disable?>> Enviar </button>
 
             </form>
         </div>
