@@ -7,7 +7,7 @@
                     <div class="footer-widget-content">
                         <a href="mailto:nailsapp@gmail.com" class="contact-link">nailsapp@gmail.com</a>&nbsp;
                         <a href="mailto:jessicasamielycg@gmail.com" class="contact-link red">jessicasamielycg@gmail.com</a>&nbsp;
-                        <a href="tel:0121234" class="contact-link">(92)98129-5537</a>&nbsp;
+                        <a href="tel:(92)98129-5537" class="contact-link">(92)98129-5537</a>&nbsp;
                         <div class="footer-social">
                             <ul>
                                 <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
