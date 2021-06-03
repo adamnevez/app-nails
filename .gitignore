@@ -1,8 +1,17 @@
 # conf database
 .env
+
+# conf Ocean
+.conf
+
+# conection db
+connection.php
+
 # ignore images products
 /images/products/*
+
 # ignore images marketing
 /images/instagram/*
+
 # ignore storage
 /storage/
