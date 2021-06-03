@@ -10,7 +10,6 @@ if (empty($id)) {
 }
 
 include_once './connection.php';
-include_once './config.php';
 
 $query_products = "SELECT id, name, price FROM products WHERE id =:id LIMIT 1";
 $result_products = $conn->prepare($query_products);
@@ -36,11 +35,10 @@ $result_schedule->execute();
 $result_schedule_msg = $conn->prepare($query_schedule);
 $result_schedule_msg->execute();
 $row_msg_vagancy = $result_schedule_msg->fetch(PDO::FETCH_ASSOC);
-extract($row_msg_vagancy);
 
 if ($row_msg_vagancy['vagancy'] == null) {
     $msgAgendamento ="<div class='alert alert-danger' role='alert'>Estamos sem VAGAS no momento!</div>";
-}
+}   
 
 ?>
 <!DOCTYPE html>
@@ -103,12 +101,10 @@ if ($row_msg_vagancy['vagancy'] == null) {
 
                 $query_verify_max ="SELECT MAX(id_client_sch) AS id_client_sch FROM schedule_client";
                 $result_verify_max = $conn->prepare($query_verify_max);
-                $result_verify_max->bindParam(':id_client_sch', $id_client_sch, PDO::PARAM_INT);
                 $result_verify_max->execute();
                 $row_max = $result_verify_max->fetch(PDO::FETCH_ASSOC);
-                extract($row_max);
 
-                if(isset($id_client_sch)) {
+                if($row_max['id_client_sch'] != 0) {
 
                     $data['created'] = date('Y-m-d H:i:s');
 
@@ -117,13 +113,14 @@ if ($row_msg_vagancy['vagancy'] == null) {
 
                     $add_checkout_schedule->bindParam(":created", $data['created'],PDO::PARAM_STR);
                     $add_checkout_schedule->bindParam(":id_weekly", $data['agendamento']);
-                    $add_checkout_schedule->bindParam(":id_client_sch", $id_client_sch);
+                    $add_checkout_schedule->bindParam(":id_client_sch", $row_max['id_client_sch']);
                     $add_checkout_schedule->execute();
 
                     if (!isset($add_checkout_schedule)) {
                         $msg = "<div class='alert alert-danger' role='alert'>Erro: Tente novamente!</div>";                                    
                     } else {
                         $msg = "<div class='alert alert-success' role='alert'>Agendamento Cadastrado com sucesso</div>";
+                        header("Refresh: 1; url = index.php"); 
                     }
                 } else {
                     die("Error: Procure o Administrador!");
@@ -158,7 +155,6 @@ if ($row_msg_vagancy['vagancy'] == null) {
                     echo $msg;
                     $msg = "";
                 }
-
 
                 if (!empty($msgAgendamento)) {
                     echo $msgAgendamento;
@@ -214,8 +210,8 @@ if ($row_msg_vagancy['vagancy'] == null) {
                     </div>
                 </div>
 
-                <a href="./" type="button" name="" class="btn btn-info" value="Enviar">Voltar</a>
-                <button type="submit" name="BtnPicPay" class="btn btn-primary" value="Enviar">Enviar</button>
+                <a href="./" type="button" name="" class="btn btn-info btn-group-sm" value="Enviar">Voltar</a>
+                <button type="submit" name="BtnPicPay" class="btn btn-primary btn-group-sm" value="Enviar">Enviar</button>
 
             </form>
         </div>
