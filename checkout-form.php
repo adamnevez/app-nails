@@ -121,8 +121,9 @@ if ($row_msg_vagancy['vagancy'] == null) {
                     } else {
                         $msg = "<div class='alert alert-success' role='alert'> Agendamento Cadastrado com sucesso </div>";
                         // $msgEmail = "<div class='alert alert-warning' role='alert'> Em instantes você receberá um e-mail com a confirmação de seu agendamento! </div>";
+                        $msgEmail = "<div class='alert alert-warning' role='alert'> Olá agradecemos sua preferencia a 'Jess Nails Designer' entraremos em contato em instantes! </div>";
                         $disable = "disabled='disabled'";
-                        header("Refresh: 2; url = index.php"); 
+                        header("Refresh: 3; url = index.php"); 
                     }
                 } else {
                     die("Error: Procure o Administrador!");
