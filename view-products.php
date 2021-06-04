@@ -44,8 +44,8 @@ include_once './connection.php';
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 mt-5">
-                <!-- <?=$description?> -->
+            <div class="col-md-12 mt-5 mb-5">
+                <?=$description?>
             </div>
         </div>
     </div>
