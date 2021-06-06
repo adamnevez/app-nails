@@ -104,8 +104,8 @@ include_once '../validate.php';
                 <td><?=$time_weekly?></td>
                 <td><?=$vagancy == 'S' ? "<span class='alert-success'>Sim</span>" : "<span class='alert-danger'>Não</span>"?></td>
                 <td class='text-center'>
-                    <a href='controllers/edit-products.php?id=<?=$id?>' class='btn btn-outline-warning btn-sm'>Editar</a>
-                    <a href='controllers/delete-products.php?id=<?=$id?>' class='btn btn-outline-danger btn-sm'>Deletar</a>
+                    <a href='controllers/edit-products.php?id=<?=$id_hour?>' class='btn btn-outline-warning btn-sm'>Editar</a>
+                    <a href='controllers/delete-products.php?id=<?=$id_hour?>' class='btn btn-outline-danger btn-sm'>Deletar</a>
                 </td>
             </tr>
             
