@@ -65,7 +65,7 @@ if (isset($data['BtnSuccess'])) {
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
                     <button type="submit" name="BtnSuccess" class="btn btn-success" value="Enviar">Salvar</button>
                 </div>
                 

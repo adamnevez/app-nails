@@ -77,8 +77,10 @@ $result_payments->execute();
                     <td><?=$name?></td>
                     <td><?='R$ '.number_format($price,2,",",".")?></td>
                     <td class='text-center'>
-                        <a href='payment-status.php?id=$id' class='btn btn-outline-primary btn-sm'>Status</a> 
-                        <a href='cancel-payment.php?id=$id' class='btn btn-outline-danger btn-sm'>Cancelar</a>
+                        <a href='#' class='btn btn-outline-primary btn-sm'>Status</a> 
+                        <!-- <a href='payment-status.php?id=$id' class='btn btn-outline-primary btn-sm'>Status</a>  -->
+                        <a href='#' class='btn btn-outline-danger btn-sm'>Cancelar</a>
+                        <!-- <a href='cancel-payment.php?id=$id' class='btn btn-outline-danger btn-sm'>Cancelar</a> -->
                     </td>
                 </tr>
 

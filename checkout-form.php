@@ -123,7 +123,7 @@ if ($row_msg_vagancy['vagancy'] == null) {
                         // $msgEmail = "<div class='alert alert-warning' role='alert'> Em instantes você receberá um e-mail com a confirmação de seu agendamento! </div>";
                         $msgEmail = "<div class='alert alert-warning' role='alert'> Olá JESS NAILS DESIGN agradece a preferencia entraremos em contato em instantes! </div>";
                         $disable = "disabled='disabled'";
-                        header("Refresh: 4; url = index.php"); 
+                        header("Refresh: 5; url = index.php"); 
                     }
                 } else {
                     die("Error: Procure o Administrador!");
@@ -171,7 +171,7 @@ if ($row_msg_vagancy['vagancy'] == null) {
                 }
 
                 ?>
-                <form method="POST" action="checkout-form.php?id=<?=$id?>">
+                <form method="POST" action="checkout-form.php?id=<?=$id?>" onSubmit="return checkoutClient()">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="first_name">Primeiro Nome</label>
@@ -219,8 +219,10 @@ if ($row_msg_vagancy['vagancy'] == null) {
                     </div>
                 </div>
 
-                <a href="./" type="button" name="" class="btn btn-info btn-group-sm" value="Enviar"> Voltar </a>
-                <button type="submit" name="BtnPicPay" class="btn btn-primary btn-group-sm" value="Enviar" <?=$disable?>> Enviar </button>
+                <a href="./" type="button" class="btn btn-info btn-group-sm" value="Enviar"> Voltar </a>
+                <button type="submit" name="BtnPicPay" class="btn btn-primary btn-group-sm" value="Enviar" <?=$disable?>> 
+                    Enviar
+                </button>
 
             </form>
         </div>

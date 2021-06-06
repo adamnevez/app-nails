@@ -17,7 +17,7 @@ $result_clients = $conn->prepare($query_clients);
 $result_clients->bindParam(':id_client',$id_client,PDO::PARAM_INT);
 $result_clients->execute();
 $row_clients = $result_clients->fetch(PDO::FETCH_ASSOC);
-extract($row_clients);
+// extract($row_clients);
 
 if (isset($_POST['email'])) {
     $query_up_client ="
@@ -40,9 +40,11 @@ if (isset($_POST['email'])) {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="images/icon/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="images/icon/favicon.ico">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../css/layout.css" integrity="" crossorigin="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Jess Design Nails - Detalhes</title>
 </head>
 <body>   
@@ -89,7 +91,7 @@ if (isset($_POST['email'])) {
                         <input type="email" name="email" id="email" class="form-control" placeholder="Digite o seu melhor e-mail" value="<?=$email?>">
                     </div>
                     <div class="footer">
-                        <a href="../view-client.php" type="button" name="BtnSuccess" class="btn btn-secondary">Voltar</a>
+                        <a href="../view-client.php" type="button" name="BtnSuccess" class="btn btn-info">Voltar</a>
                         <button type="submit" name="BtnSuccess" class="btn btn-success" value="Enviar">Salvar</button>
                     </div>
                 </form>

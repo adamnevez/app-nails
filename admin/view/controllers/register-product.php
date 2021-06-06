@@ -51,12 +51,12 @@ if (isset($data['BtnSuccess'])) {
                         <div class="form-group col-md-6">
                             <label for="name">Nome do Serviço</label>
                             <input type="text" name="name" id="name" class="form-control" placeholder="Primeiro nome" value=
-                            "<?php if(isset($data['name'])) { echo $data['name']; } ?>" autofocus>
+                            "<?php if(isset($data['name'])) { echo $data['name']; } ?>" autofocus required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="price">Preço do Serviço</label>
                             <input type="text" name="price" id="price" class="form-control" placeholder="Último nome" value=
-                            "<?php if(isset($data['price'])) { echo $data['price']; } ?>">
+                            "<?php if(isset($data['price'])) { echo $data['price']; } ?>" onKeyPress="return(moeda(this,'.','.',event))"required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -68,10 +68,10 @@ if (isset($data['BtnSuccess'])) {
                     </div>
                     <div class="form-group">
                         <label for="description">Descrição</label>
-                        <textarea class="form-control rounded-0" name="description" id="description" placeholder="Digite o texto de descrição" rows="6" value="<?php if(isset($data['description'])) { echo $data['description']; } ?>"></textarea>
+                        <textarea class="form-control rounded-0" name="description" id="description" placeholder="Digite o texto de descrição" rows="6"><?php if(isset($data['description'])) { echo $data['description']; } ?></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
                         <button type="submit" name="BtnSuccess" class="btn btn-success" value="Enviar">Salvar</button>
                     </div>
                 </form>

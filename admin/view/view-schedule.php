@@ -3,7 +3,7 @@ session_start();
 define('ACCESS', true);
 
 include_once '../../connection.php';
-include_once '../../validate.php';
+include_once '../validate.php';
 
 ?>
 <!DOCTYPE html>

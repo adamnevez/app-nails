@@ -29,9 +29,9 @@ if (isset($_POST['email'])) {
     $update_client->execute();
 
     if (!isset($update_client)) {
-        $msg = "<div class='alert alert-danger' role='alert'>Erro: Tente novamente!</div>";
+        header("Refresh: 0; url = edit-clients.php?id=".$id_client."&msg=error");  
     } else {
-        $msg = "<div class='alert alert-success' role='alert'>Informações atualizado com Sucesso!</div>";        
+        header("Refresh: 0; url = edit-clients.php?id=".$id_client."&msg=success");  
     }
 }
 
@@ -43,6 +43,8 @@ if (isset($_POST['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="images/icon/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/layout.css" integrity="" crossorigin="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Nails App - Detalhes</title>
 </head>
 <body>   
@@ -54,13 +56,12 @@ if (isset($_POST['email'])) {
     <div class="container">
         <h2 class="display-4 mt-3 mb-3">Editar Informações Cliente</h2>
         <hr>
-        <?php 
-        if (!empty($msg)) {
-            echo $msg;
-            $msg = "";
-        }
 
+        <?php 
+        echo $_GET['msg'] == 'error' ? "<div class='alert alert-danger' role='alert'>Error ao excluir!</div>" : "";
+        echo $_GET['msg'] == 'success' ? "<div class='alert alert-success' role='alert'>Informações alterada com sucesso!</div>" : "";
         ?>
+        
         <div class="row mb-3">
             <div class="col-md-12">
                 <form method="POST" action="">
@@ -77,7 +78,7 @@ if (isset($_POST['email'])) {
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="cpf">CPF</label>
-                            <input type="text" name="cpf" id="cpf" class="form-control" placeholder="Somente número do CPF" maxlength="14" oninput="maskCPF(this)" value="<?=$cpf?>">
+                            <input type="text" name="cpf" id="cpf" class="form-control" placeholder="Somente número do CPF" maxlength="14" oninput="maskCPF(this)" value="<?=$cpf?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">Telefone</label>
