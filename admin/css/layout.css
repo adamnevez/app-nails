@@ -181,7 +181,7 @@ only screen and (max-width: 760px),
 /* intro animation nails app */
 
 body {
-  overflow: hidden; 
+  /*overflow: hidden; */
 }
  
 /* ini: Preloader */

@@ -13,19 +13,16 @@ include_once './connection.php';
     <link rel="stylesheet" href="admin/css/layout.css" integrity="" crossorigin="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
     <title>Nails App</title>
-
-<style type="text/css">
-
-</style>
-
 </head>
-
-<body class="">
+<body>
+    
     <?php
     include_once './menu.php';
     ?>
+
     <div class="container">
         <h2 class="display-4 mt-5 mb-5">Serviços</h2>
+        
         <div id="preloader">
             <div class="inner">
              <!-- HTML DA ANIMAÇÃO PRELOADER! -->
@@ -71,13 +68,7 @@ include_once './connection.php';
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-    $(window).on('load', function () {
-        $('#preloader .inner').fadeOut();
-        $('#preloader').delay(350).fadeOut('slow'); 
-        $('body').delay(350).css({'overflow': 'visible'});
-    });
-    </script>
+    <script src="js/custom.js"></script>
 
 </body>
 </html>

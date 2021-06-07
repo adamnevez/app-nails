@@ -30,6 +30,18 @@ include_once './connection.php';
     ?>
     <div class="container">
         <h1 class="display-4 mt-5 mb-5"><?=$name?></h1>
+
+        <div id="preloader">
+            <div class="inner">
+             <!-- HTML DA ANIMAÇÃO PRELOADER! -->
+                <div class="bolas">
+                    <div></div>
+                    <div></div>
+                    <div></div>                    
+                </div>
+            </div>
+        </div>
+        
         <div class="row">
             <div class="col-md-6">
                 <img src='<?="./images/products/$id/$image"?>' class="card-img-top">
@@ -38,8 +50,8 @@ include_once './connection.php';
                 <p class="color-h3 font-weight-normal">Valor: R$ <?=number_format($price, 2, ",", ".");?></p>
                 <p>
                     <!-- <a href="checkout-form.php?id=<?=$id;?>" class="btn btn-success">Pagar Via PicPay</a> -->
-                    <a href="checkout-form.php?id=<?=$id;?>" class="btn btn-primary">Agendamento</a>
                     <a href="./" class="btn btn-info">Voltar</a>
+                    <a href="checkout-form.php?id=<?=$id;?>" class="btn btn-primary">Agendamento</a>
                 </p>
             </div>
         </div>
@@ -52,6 +64,7 @@ include_once './connection.php';
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="js/custom.js"></script>
 
 </body>
 </html>

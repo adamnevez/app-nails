@@ -140,6 +140,17 @@ if ($row_msg_vagancy['vagancy'] == null) {
             <p class="lead"></p>
         </div>
 
+        <div id="preloader">
+            <div class="inner">
+             <!-- HTML DA ANIMAÇÃO PRELOADER! -->
+                <div class="bolas">
+                    <div></div>
+                    <div></div>
+                    <div></div>                    
+                </div>
+            </div>
+        </div>
+
         <div class="row mb-5">
             <div class="col-md-8">
                 <h3><?=$name?></h3>
@@ -171,6 +182,7 @@ if ($row_msg_vagancy['vagancy'] == null) {
                 }
 
                 ?>
+                
                 <form method="POST" action="checkout-form.php?id=<?=$id?>" onSubmit="return checkoutClient()">
                     <div class="form-row">
                         <div class="form-group col-md-6">

@@ -14,6 +14,8 @@ function maskCPF(numberCPF){
     }
 }
 
+
+
 function maskPhone(numberPhone){
     var phone = numberPhone.value;
     
@@ -24,6 +26,7 @@ function maskPhone(numberPhone){
         numberPhone.value = phone;
     }
 }
+
 
 
 function moeda(a, e, r, t) {
@@ -64,9 +67,19 @@ function moeda(a, e, r, t) {
 }
 
 
+
 function checkoutClient(){
     var cpf = document.getElementById("cpf").value;
     $.get("admin/checkout-client.php?cpf="+cpf, function(dados) {
         console.log(cpf);
     });
 }
+
+
+
+
+$(window).on('load', function () {
+    $('#preloader .inner').fadeOut();
+    $('#preloader').delay(350).fadeOut('slow');     
+    $('body').delay(350).css({'overflow': 'visible'});
+});
