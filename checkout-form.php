@@ -231,10 +231,8 @@ if ($row_msg_vagancy['vagancy'] == null) {
                     </div>
                 </div>
 
-                <a href="./" type="button" class="btn btn-info btn-group-sm" value="Enviar"> Voltar </a>
-                <button type="submit" name="BtnPicPay" class="btn btn-primary btn-group-sm" value="Enviar" <?=$disable?>> 
-                    Enviar
-                </button>
+                <a href="./" type="button" class="btn btn-info" value="Enviar"> Voltar </a>
+                <button type="submit" name="BtnPicPay" class="btn btn-primary" value="Enviar" <?=$disable?>> Enviar</button>
 
             </form>
         </div>

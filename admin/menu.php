@@ -31,6 +31,6 @@ if(!defined('ACCESS')){
                 </li>
             </ul>
         </div>
-        <a href="logout.php" class="btn btn-danger my-2 my-sm-0">Logout</a>
+        <button type="button" class="btn btn-danger my-2 my-sm-0" id="logout" name="logout" onclick="confirmLogout()">Logout</button>
     </div>
 </nav>

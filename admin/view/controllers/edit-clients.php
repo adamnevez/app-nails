@@ -50,7 +50,7 @@ if (isset($_POST['email'])) {
 <body>   
     
     <?php 
-    include_once '../../menu.php' 
+    include_once './menu.php' 
     ?>
     
     <div class="container">

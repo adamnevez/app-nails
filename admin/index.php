@@ -77,7 +77,9 @@ include_once '../connection.php';
                 echo $_SESSION['msg'];
                 unset($_SESSION['msg']);
             }
-            
+
+            echo $_GET['msg'] == 'success' ? "<div class='alert alert-success' role='alert'>Deslogado com sucesso!</div>" : "";
+
             ?>
             <div class="form-label-group">
                 <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" value=
