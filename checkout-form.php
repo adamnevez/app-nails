@@ -27,7 +27,8 @@ DATE_FORMAT(hs.date_weekly,'%d/%m/%Y') AS date_weekly,
 DATE_FORMAT(hs.time_weekly,'%H:%m') AS time_weekly,
 hs.vagancy
 FROM hour_schedule AS hs 
-WHERE vagancy = 'S' 
+WHERE vagancy = 'S'
+AND date_weekly >= '".date("d/m/Y")."' 
 ORDER BY date_weekly DESC";
 $result_schedule = $conn->prepare($query_schedule);
 $result_schedule->execute();
